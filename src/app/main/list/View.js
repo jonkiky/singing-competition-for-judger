@@ -338,7 +338,8 @@ const data_cate2 = data.length>0? data.filter(song => song.cate==2):[];
         </BootstrapDialogTitle>
         <DialogContent>
            
-           <p>Thank you for your rating, Click Submit button to Confirm your rating.</p>
+           <p>Thank you for your rating.</p>
+           <p>Click Submit button to confirm your rating.</p>
 
         </DialogContent>
         <DialogActions>
