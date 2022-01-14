@@ -81,17 +81,32 @@ const onSubmit= ()=>{
    setOpen(true);
 }
 
-const handleChange=(id,value,cate)=>{
+const handleChange=(id,value,cate,range)=>{
   let localVote =JSON.parse(JSON.stringify(votes));
+  let hasWarning= false;
   let updatedVote = localVote.map(vote=>{
     if(vote.id ===id){
       vote[cate] =value;
-      vote["score"] = parseInt(vote.score_cate1)+parseInt(vote.score_cate2)+parseInt(vote.score_cate3)+parseInt(vote.score_cate4)+parseInt(vote.score_cate5)+parseInt(vote.score_cate6)
+      if(value=="" || Number.isInteger(parseInt(value))){
+        if(value=="") value = 0;
+        if(parseInt(value)>range ||  parseInt(value)<0){
+         toast.error("The rate is out of range, please make sure the range is 0 - " + range.toString())
+         toast.clearWaitingQueue();
+         hasWarning= true;
+      }else{
+        vote["score"] = parseInt(vote.score_cate1)+parseInt(vote.score_cate2)+parseInt(vote.score_cate3)+parseInt(vote.score_cate4)+parseInt(vote.score_cate5)+parseInt(vote.score_cate6)
+  
+        }
+      }else{
+        toast.error("Please type a number and make sure the range is 0 - " + range.toString())
+        toast.clearWaitingQueue();
+      }
     }
     return vote;
   })
-  setVotes(updatedVote);
-  console.log(updatedVote);
+  if(!hasWarning){
+    setVotes(updatedVote);
+  }
 }
 
 const getScoreValue=()=>{
@@ -101,48 +116,63 @@ const getScoreValue=()=>{
 // Du change
 const columns_cate1 = [
   {
-    name: 'Index',
-    selector: (row, index) =>  { return <span> {index+1} </span> },
+    name: '节目',
+    selector: row => {
+      return row.SongName
+      },
+  },
+  {
+    name: '节目链接',
+    selector: row => {
+      return <a
+        href={row.SongLink}
+        target="external-url"
+      >
+        <PlayCircleFilledWhiteIcon/>
+      </a>
+      },
   },
   {
     name: '总分（满分100）',
     selector: row => {
-       return  row.score;
-    }
+       return  <div style={{"width":"80px"}}> {row.score}</div>;
+    },
+     minWidth : "200"
   },
   {
     name: '音准(20%)',
     selector: row => {
       return  <input type="text" className="form-control" defaultValue={row.score_cate1} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",20)}/>
       },
   },
    {
     name: '音色(20%)',
     selector: row => {
        return  <input type="text" className="form-control" defaultValue={row.score_cate2} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",20)}/>
       },
   },
   {
     name: '歌曲处理(20%)',
     selector: row => {
        return  <input type="text" className="form-control" defaultValue={row.score_cate3} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",20)}/>
       },
+      minWidth : "200"
   },
   {
     name: '节奏(20%)',
     selector: row => {
        return  <input type="text" className="form-control" defaultValue={row.score_cate4} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",20)}/>
       },
   },
   {
     name: '咬字(20%)',
     selector: row => {
        return  <input type="text" className="form-control" defaultValue={row.score_cate5} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",20)}/>
       },
   },
   {
@@ -163,23 +193,7 @@ const columns_cate1 = [
       return row.school
       },
   },
-  {
-    name: '节目',
-    selector: row => {
-      return row.SongName
-      },
-  },
-  {
-    name: '节目链接',
-    selector: row => {
-      return <a
-        href={row.SongLink}
-        target="external-url"
-      >
-        <PlayCircleFilledWhiteIcon/>
-      </a>
-      },
-  },
+
   {
     name: '唱法',
     selector: row => {
@@ -187,21 +201,9 @@ const columns_cate1 = [
       },
   },
   {
-    name: '独唱/合唱',
-    selector: row => {
-      return row.Style2
-      },
-  },
-  {
     name: '分组',
     selector: row => {
       return row.group
-      },
-  },
-  {
-    name: '分组分项',
-    selector: row => {
-      return row.style_and_group
       },
   }
 ]
@@ -209,55 +211,70 @@ const columns_cate1 = [
 // he chang
 const columns_cate2 = [
   {
-    name: 'Index',
-    selector: (row, index) =>  { return <span> {index+1} </span> },
+    name: '节目',
+    selector: row => {
+      return row.SongName
+      },
+  },
+  {
+    name: '节目链接',
+    selector: row => {
+      return <a
+        href={row.SongLink}
+        target="external-url"
+      >
+        <PlayCircleFilledWhiteIcon/>
+      </a>
+      },
   },
   {
     name: '总分（满分100）',
     selector: row => {
-        return  row.score;
-    }
+        return  <div style={{"width":"80px"}}> {row.score}</div>;
+    },
+    minWidth : "200"
   },
   {
     name: '音准(15%)',
     selector: row => {
      return  <input type="text" className="form-control" defaultValue={row.score_cate1} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",15)}/>
       },
   },
    {
     name: '音色(15%)',
     selector: row => {
       return  <input type="text" className="form-control" defaultValue={row.score_cate2} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",15)}/>
       },
   },
   {
     name: '歌曲处理(15%)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate3} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3")}/>
+      return  <div> <input type="text" className="form-control" defaultValue={row.score_cate3} name="cf-name"  
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",15)}/></div>
       },
+    minWidth : "200"
   },
   {
     name: '节奏(15%)',
     selector: row => {
       return  <input type="text" className="form-control" defaultValue={row.score_cate4} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",15)}/>
       },
   },
   {
     name: '默契(25 %)',
     selector: row => {
       return  <input type="text" className="form-control" defaultValue={row.score_cate6} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate6")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate6",25)}/>
       },
   },
   {
     name: '咬字(15%)',
     selector: row => {
       return  <input type="text" className="form-control" defaultValue={row.score_cate5} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5")}/>
+      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",15)}/>
       },
   },
   {
@@ -279,44 +296,15 @@ const columns_cate2 = [
       },
   },
   {
-    name: '节目',
-    selector: row => {
-      return row.SongName
-      },
-  },
-  {
-    name: '节目链接',
-    selector: row => {
-      return <a
-        href={row.SongLink}
-        target="external-url"
-      >
-        <PlayCircleFilledWhiteIcon/>
-      </a>
-      },
-  },
-  {
     name: '唱法',
     selector: row => {
       return row.style1
       },
   },
   {
-    name: '独唱/合唱',
-    selector: row => {
-      return row.Style2
-      },
-  },
-  {
     name: '分组',
     selector: row => {
       return row.group
-      },
-  },
-  {
-    name: '分组分项',
-    selector: row => {
-      return row.style_and_group
       },
   }
 ]
