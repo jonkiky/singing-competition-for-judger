@@ -33,7 +33,7 @@ function HomeView(props) {
                               <div className="hero-text mt-5 text-center">
 
                                     <h6 data-aos="fade-up"className="text-white"  data-aos-delay="300">Welcome to NAAAC-North America Alumni Alliance Cup Singing Competition Voting System</h6>
-                                    <h1 className="text-white" data-aos="fade-up" data-aos-delay="500">NAAAC Judge portal</h1>
+                                    <h1 className="text-white" data-aos="fade-up" data-aos-delay="500">NAAAC Judger portal</h1>
                               <form  onSubmit={handleSubmit(onSubmit)}>
                               <input type="email" className="form-control" name="cf-email" placeholder="Email  (lowercase) "   {...register("email",{ required: "Please enter your email." })}  />
                               <input type="text" className="form-control" name="cf-group" placeholder="password"  {...register("code",{ required: "Please enter your password." })} />

@@ -353,10 +353,10 @@ const data_cate2 = data.length>0? data.filter(song => song.cate==2):[];
                <div className="container">
                     <div className="row">
                          <div className="col-lg-12 col-md-12 mx-auto col-12">
-                          <h3 className="text-white" >Welcome to the NAAAC Judge Protal</h3>
+                          <h3 className="text-white" >Welcome to the NAAAC Judger Protal</h3>
                           <br/>
                           <p className="text-white">
-                          Thank you for using NAAAC Judge Protal.
+                          Thank you for using NAAAC Judger Protal.
                           </p>
                            <p className="text-white">
                           In this page, you will see two sections,each section contains multi-songs for rating.
