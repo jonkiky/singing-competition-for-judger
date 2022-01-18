@@ -115,11 +115,17 @@ const getScoreValue=()=>{
 
 // Du change
 const columns_cate1 = [
+ {
+    name: 'Index',
+    selector: (row, index) =>  { return <span> {index+1} </span> },
+  },
+
   {
     name: '节目',
-    selector: row => {
-      return row.SongName
-      },
+    selector: row =>{
+       return  <div style={{"minWidth":"250px"}}> {row.SongName}</div>;
+    },
+    minWidth : "250px"
   },
   {
     name: '节目链接',
@@ -211,10 +217,15 @@ const columns_cate1 = [
 // he chang
 const columns_cate2 = [
   {
+    name: 'Index',
+    selector: (row, index) =>  { return <span> {index+1} </span> },
+  },
+  {
     name: '节目',
-    selector: row => {
-      return row.SongName
-      },
+    selector: row =>{
+       return  <div style={{"minWidth":"250px"}}> {row.SongName}</div>;
+    },
+    minWidth : "250px"
   },
   {
     name: '节目链接',
@@ -310,8 +321,8 @@ const columns_cate2 = [
 ]
 
 const data = votes.length?votes: [];
-const data_cate1 = data.length>0? data.filter(song => song.cate==1):[];
-const data_cate2 = data.length>0? data.filter(song => song.cate==2):[];
+const data_cate1 = data.length>0? data.filter(song => song.cate=="1"):[];
+const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
 
   return (
   	  <section className="hero-list d-flex flex-column justify-content-center align-items-center">

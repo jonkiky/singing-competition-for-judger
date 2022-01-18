@@ -11,7 +11,6 @@ query get_judge_song_list($password: String!,$email: String!) {
     SongId
     SongLink
     SongName
-    Style2
     id
     cate
     email
@@ -27,7 +26,6 @@ query get_judge_song_list($password: String!,$email: String!) {
     score_cate5
     score_cate6
     style1
-    style_and_group
   }
   }`;
 
