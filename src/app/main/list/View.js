@@ -115,11 +115,6 @@ const getScoreValue=()=>{
 
 // Du change
 const columns_cate1 = [
- {
-    name: 'Index',
-    selector: (row, index) =>  { return <span> {index+1} </span> },
-  },
-
   {
     name: '节目',
     selector: row =>{
@@ -137,61 +132,68 @@ const columns_cate1 = [
         <PlayCircleFilledWhiteIcon/>
       </a>
       },
+      maxWidth : "100px"
   },
   {
     name: '总分（满分100）',
     selector: row => {
        return  <div style={{"width":"80px"}}> {row.score}</div>;
     },
-     minWidth : "200"
+     maxWidth : "130px"
   },
   {
     name: '音准(20%)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate1} name="cf-name"  
+      return  <input type="text" className="form-control form-control-short-50 " defaultValue={row.score_cate1} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",20)}/>
       },
+      maxWidth : "60px"
   },
    {
     name: '音色(20%)',
     selector: row => {
-       return  <input type="text" className="form-control" defaultValue={row.score_cate2} name="cf-name"  
+       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate2} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",20)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '歌曲处理(20%)',
     selector: row => {
-       return  <input type="text" className="form-control" defaultValue={row.score_cate3} name="cf-name"  
+       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate3} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",20)}/>
       },
-      minWidth : "200"
+      maxWidth : "125px"
   },
   {
     name: '节奏(20%)',
     selector: row => {
-       return  <input type="text" className="form-control" defaultValue={row.score_cate4} name="cf-name"  
+       return  <input type="text" className="form-control form-control-short-50 " defaultValue={row.score_cate4} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",20)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '咬字(20%)',
     selector: row => {
-       return  <input type="text" className="form-control" defaultValue={row.score_cate5} name="cf-name"  
+       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate5} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",20)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '节目编号',
     selector: row => {
       return row.SongId
       },
+      maxWidth : "50px"
   },
   {
     name: '名字',
     selector: row => {
       return row.name
       },
+      maxWidth : "80px"
   },
   {
     name: '校友',
@@ -205,6 +207,7 @@ const columns_cate1 = [
     selector: row => {
       return row.style1
       },
+      maxWidth : "50px"
   },
   {
     name: '分组',
@@ -217,10 +220,6 @@ const columns_cate1 = [
 // he chang
 const columns_cate2 = [
   {
-    name: 'Index',
-    selector: (row, index) =>  { return <span> {index+1} </span> },
-  },
-  {
     name: '节目',
     selector: row =>{
        return  <div style={{"minWidth":"250px"}}> {row.SongName}</div>;
@@ -237,68 +236,76 @@ const columns_cate2 = [
         <PlayCircleFilledWhiteIcon/>
       </a>
       },
+      maxWidth : "100px"
   },
   {
     name: '总分（满分100）',
     selector: row => {
         return  <div style={{"width":"80px"}}> {row.score}</div>;
     },
-    minWidth : "200"
+    maxWidth : "130px"
   },
   {
     name: '音准(15%)',
     selector: row => {
-     return  <input type="text" className="form-control" defaultValue={row.score_cate1} name="cf-name"  
+     return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate1} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",15)}/>
       },
+      maxWidth : "60px"
   },
    {
     name: '音色(15%)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate2} name="cf-name"  
+      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate2} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",15)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '歌曲处理(15%)',
     selector: row => {
-      return  <div> <input type="text" className="form-control" defaultValue={row.score_cate3} name="cf-name"  
+      return  <div> <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate3} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",15)}/></div>
       },
-    minWidth : "200"
+    maxWidth : "125px"
   },
   {
     name: '节奏(15%)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate4} name="cf-name"  
+      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate4} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",15)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '默契(25 %)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate6} name="cf-name"  
+      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate6} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate6",25)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '咬字(15%)',
     selector: row => {
-      return  <input type="text" className="form-control" defaultValue={row.score_cate5} name="cf-name"  
+      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate5} name="cf-name"  
       onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",15)}/>
       },
+      maxWidth : "60px"
   },
   {
     name: '节目编号',
     selector: row => {
       return row.SongId
       },
+      maxWidth : "50px"
   },
   {
     name: '名字',
     selector: row => {
       return row.name
       },
+      maxWidth : "80px"
   },
   {
     name: '校友',
@@ -311,6 +318,7 @@ const columns_cate2 = [
     selector: row => {
       return row.style1
       },
+      maxWidth : "50px"
   },
   {
     name: '分组',

@@ -70,6 +70,14 @@ https://www.tooplate.com/view/2119-gymso-fitness
   /*---------------------------------------
      TYPOGRAPHY              
   -----------------------------------------*/
+  .container{
+
+    max-width: 100% !important;
+  }
+
+  .form-control-short-50{
+    max-width: 50px;
+  }
 
   h1,h2,h3,h4,h5,h6 {
     font-weight: var(--font-weight-thin);
