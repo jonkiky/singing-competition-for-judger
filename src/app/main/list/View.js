@@ -69,8 +69,8 @@ const handleConfirm=()=>{
   })
 }
   updateJudgeVote(db_vote);
-  //logout();
 };
+
 
 const onCancel=()=>{
   logout();
@@ -109,9 +109,7 @@ const handleChange=(id,value,cate,range)=>{
   }
 }
 
-const getScoreValue=()=>{
-  return 111;
-}
+
 
 // Du change
 const columns_cate1 = [

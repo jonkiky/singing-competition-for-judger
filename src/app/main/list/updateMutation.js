@@ -16,7 +16,7 @@ export const useUpdateMutation = () => {
 
   const [mutation,mutationResults] = useMutation(loginMutationGQL, {
     onCompleted: (data) => {
-      logout();
+      window.location.reload();
       return true;
     },
   });
