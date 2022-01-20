@@ -371,8 +371,7 @@ const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
                             <li className="text-white">Section 2 is 合唱.</li>
                           </ul>
                           <p className="text-white">
-                          You can submit your ratings by clicking the submit button. You will logout after the submit. 
-                          You can change your mind by relogin to the system. 
+                          You can submit your ratings by clicking the submit button.
                           Thank you !
                           </p>
                          </div>
