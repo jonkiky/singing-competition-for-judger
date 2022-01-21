@@ -376,7 +376,7 @@ const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
                           </p>
                          </div>
                     </div>
-                     <div className="row">
+                     <div className="row" style={{"position": "sticky", "top": "0","zIndex": "999"}}>
                       <div className="col-lg-6 col-md-2  col-sm-12"></div>
                           <div className="col-lg-3 col-md-5 col-sm-12 ">
                               <button type="button" className="form-control" id="submit-button" onClick={onSubmit}>Submit my votes</button>
