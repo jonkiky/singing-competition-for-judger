@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 function HomeView(props) {
   
   if(props.warning) {
-      toast.error("The Email or password you entered does not match our records. Please try again or contact xiaolianbei.org@gmail.com for help")
+      toast.error("The username or password you entered does not match our records. Please try again or contact xiaolianbei.org@gmail.com for help")
       toast.clearWaitingQueue();
   }
 
@@ -35,7 +35,7 @@ function HomeView(props) {
                                     <h6 data-aos="fade-up"className="text-white"  data-aos-delay="300">Welcome to NAAAC-North America Alumni Alliance Cup Singing Competition Voting System</h6>
                                     <h1 className="text-white" data-aos="fade-up" data-aos-delay="500">NAAAC Judger portal</h1>
                               <form  onSubmit={handleSubmit(onSubmit)}>
-                              <input type="email" className="form-control" name="cf-email" placeholder="Email  (lowercase) "   {...register("email",{ required: "Please enter your email." })}  />
+                              <input type="text" className="form-control" name="cf-email" placeholder="User Name  (lowercase) "   {...register("email",{ required: "Please enter your email." })}  />
                               <input type="text" className="form-control" name="cf-group" placeholder="password"  {...register("code",{ required: "Please enter your password." })} />
                               <button disabled={disableForm} type="submit" className="form-control" id="submit-button" name="submit">Sign in </button>
                             </form>

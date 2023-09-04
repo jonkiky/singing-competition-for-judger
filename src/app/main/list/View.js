@@ -56,14 +56,14 @@ const handleConfirm=()=>{
   if(votes.length>0){
     votes.map(song=>{
       db_vote.push({ 
-        id:song.id,  
-        score:song.score,
-        score_cate1: song.score_cate1, 
-        score_cate2: song.score_cate2, 
-        score_cate3: song.score_cate3, 
-        score_cate4: song.score_cate4, 
-        score_cate5: song.score_cate5, 
-        score_cate6: song.score_cate6, 
+        id:parseInt(song.id),  
+        score:parseInt(song.score),
+        score_cate1: 0, 
+        score_cate2: 0, 
+        score_cate3: 0, 
+        score_cate4: 0, 
+        score_cate5: 0, 
+        score_cate6: 0, 
       });
       return song;
   })
@@ -85,8 +85,7 @@ const handleChange=(id,value,cate,range)=>{
   let localVote =JSON.parse(JSON.stringify(votes));
   let hasWarning= false;
   let updatedVote = localVote.map(vote=>{
-    if(vote.id ===id){
-      vote[cate] =value;
+    if(id == vote.id) {
       if(value=="" || Number.isInteger(parseInt(value))){
         if(value=="") value = 0;
         if(parseInt(value)>range ||  parseInt(value)<0){
@@ -94,8 +93,7 @@ const handleChange=(id,value,cate,range)=>{
          toast.clearWaitingQueue();
          hasWarning= true;
       }else{
-        vote["score"] = parseInt(vote.score_cate1)+parseInt(vote.score_cate2)+parseInt(vote.score_cate3)+parseInt(vote.score_cate4)+parseInt(vote.score_cate5)+parseInt(vote.score_cate6)
-  
+        vote["score"] = value;
         }
       }else{
         toast.error("Please type a number and make sure the range is 0 - " + range.toString())
@@ -114,72 +112,6 @@ const handleChange=(id,value,cate,range)=>{
 // Du change
 const columns_cate1 = [
   {
-    name: '节目',
-    selector: row =>{
-       return  <div style={{"minWidth":"250px"}}> {row.SongName}</div>;
-    },
-    minWidth : "250px"
-  },
-  {
-    name: '节目链接',
-    selector: row => {
-      return <a
-        href={row.SongLink}
-        target="external-url"
-      >
-        <PlayCircleFilledWhiteIcon/>
-      </a>
-      },
-      maxWidth : "100px"
-  },
-  {
-    name: '总分（满分100）',
-    selector: row => {
-       return  <div style={{"width":"80px"}}> {row.score}</div>;
-    },
-     maxWidth : "130px"
-  },
-  {
-    name: '音准(20%)',
-    selector: row => {
-      return  <input type="text" className="form-control form-control-short-50 " defaultValue={row.score_cate1} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",20)}/>
-      },
-      maxWidth : "60px"
-  },
-   {
-    name: '音色(20%)',
-    selector: row => {
-       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate2} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",20)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '歌曲处理(20%)',
-    selector: row => {
-       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate3} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",20)}/>
-      },
-      maxWidth : "125px"
-  },
-  {
-    name: '节奏(20%)',
-    selector: row => {
-       return  <input type="text" className="form-control form-control-short-50 " defaultValue={row.score_cate4} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",20)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '咬字(20%)',
-    selector: row => {
-       return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate5} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",20)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
     name: '节目编号',
     selector: row => {
       return row.SongId
@@ -187,37 +119,6 @@ const columns_cate1 = [
       maxWidth : "50px"
   },
   {
-    name: '名字',
-    selector: row => {
-      return row.name
-      },
-      maxWidth : "80px"
-  },
-  {
-    name: '校友',
-    selector: row => {
-      return row.school
-      },
-  },
-
-  {
-    name: '唱法',
-    selector: row => {
-      return row.style1
-      },
-      maxWidth : "50px"
-  },
-  {
-    name: '分组',
-    selector: row => {
-      return row.group
-      },
-  }
-]
-
-// he chang
-const columns_cate2 = [
-  {
     name: '节目',
     selector: row =>{
        return  <div style={{"minWidth":"250px"}}> {row.SongName}</div>;
@@ -237,98 +138,23 @@ const columns_cate2 = [
       maxWidth : "100px"
   },
   {
-    name: '总分（满分100）',
+    name: '评委评分',
     selector: row => {
-        return  <div style={{"width":"80px"}}> {row.score}</div>;
-    },
-    maxWidth : "130px"
-  },
-  {
-    name: '音准(15%)',
-    selector: row => {
-     return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate1} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate1",15)}/>
-      },
-      maxWidth : "60px"
-  },
-   {
-    name: '音色(15%)',
-    selector: row => {
-      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate2} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate2",15)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '歌曲处理(15%)',
-    selector: row => {
-      return  <div> <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate3} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate3",15)}/></div>
+      return  <div> <input type="text" className="form-control form-control-short-50" defaultValue={row.score} name="cf-name"  
+      onChange={(event)=>handleChange(row.id,event.target.value,"score",100)}/></div>
       },
     maxWidth : "125px"
-  },
-  {
-    name: '节奏(15%)',
-    selector: row => {
-      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate4} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate4",15)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '默契(25 %)',
-    selector: row => {
-      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate6} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate6",25)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '咬字(15%)',
-    selector: row => {
-      return  <input type="text" className="form-control form-control-short-50" defaultValue={row.score_cate5} name="cf-name"  
-      onChange={(event)=>handleChange(row.id,event.target.value,"score_cate5",15)}/>
-      },
-      maxWidth : "60px"
-  },
-  {
-    name: '节目编号',
-    selector: row => {
-      return row.SongId
-      },
-      maxWidth : "50px"
-  },
-  {
-    name: '名字',
-    selector: row => {
-      return row.name
-      },
-      maxWidth : "80px"
-  },
-  {
-    name: '校友',
-    selector: row => {
-      return row.school
-      },
-  },
-  {
-    name: '唱法',
-    selector: row => {
-      return row.style1
-      },
-      maxWidth : "50px"
-  },
-  {
-    name: '分组',
-    selector: row => {
-      return row.group
-      },
   }
 ]
+
 
 const data = votes.length?votes: [];
 const data_cate1 = data.length>0? data.filter(song => song.cate=="1"):[];
 const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
+const data_cate3 = data.length>0? data.filter(song => song.cate=="3"):[];
+const data_cate4 = data.length>0? data.filter(song => song.cate=="4"):[];
+const data_cate5 = data.length>0? data.filter(song => song.cate=="5"):[];
+
 
   return (
   	  <section className="hero-list d-flex flex-column justify-content-center align-items-center">
@@ -364,12 +190,8 @@ const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
                           Thank you for using NAAAC Judger Protal.
                           </p>
                            <p className="text-white">
-                          In this page, you will see two sections,each section contains multi-songs for rating.
+                          In this page, you will see sections,each section contains multi-songs for rating.
                           </p>
-                          <ul>
-                            <li className="text-white">Section 1 is 独唱. </li>
-                            <li className="text-white">Section 2 is 合唱.</li>
-                          </ul>
                           <p className="text-white">
                           You can submit your ratings by clicking the submit button.
                           Thank you !
@@ -388,7 +210,7 @@ const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
                     <div className="row">
                          <div className="col-lg-12 col-md-12 mx-auto col-12">
                               <div className="mt-5">
-                                 <h4 className="text-white"> 独唱 </h4>
+                                 <h4 className="text-white"> 原创歌曲 </h4>
                                  <DataTable
                                       columns={columns_cate1}
                                       data={data_cate1}
@@ -401,10 +223,52 @@ const data_cate2 = data.length>0? data.filter(song => song.cate=="2"):[];
                     <div className="row">
                         <div className="col-lg-12 col-md-12 mx-auto col-12">
                               <div className="mt-5">
-                                <h4 className="text-white"> 合唱 </h4>
+                                <h4 className="text-white"> 通俗唱法 </h4>
                                  <DataTable
-                                      columns={columns_cate2}
+                                      columns={columns_cate1}
                                       data={data_cate2}
+                                      progressPending={props.loading} 
+                                  />
+                              </div>
+                              
+                         </div>
+
+                    </div>
+                     <div className="row">
+                        <div className="col-lg-12 col-md-12 mx-auto col-12">
+                              <div className="mt-5">
+                                <h4 className="text-white"> 美声唱法 </h4>
+                                 <DataTable
+                                      columns={columns_cate1}
+                                      data={data_cate3}
+                                      progressPending={props.loading} 
+                                  />
+                              </div>
+                              
+                         </div>
+
+                    </div>
+                     <div className="row">
+                        <div className="col-lg-12 col-md-12 mx-auto col-12">
+                              <div className="mt-5">
+                                <h4 className="text-white"> 民族唱法 </h4>
+                                 <DataTable
+                                      columns={columns_cate1}
+                                      data={data_cate4}
+                                      progressPending={props.loading} 
+                                  />
+                              </div>
+                              
+                         </div>
+
+                    </div>
+                     <div className="row">
+                        <div className="col-lg-12 col-md-12 mx-auto col-12">
+                              <div className="mt-5">
+                                <h4 className="text-white"> 戏曲 </h4>
+                                 <DataTable
+                                      columns={columns_cate1}
+                                      data={data_cate5}
                                       progressPending={props.loading} 
                                   />
                               </div>

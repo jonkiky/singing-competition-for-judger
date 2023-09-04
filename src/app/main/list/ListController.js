@@ -6,7 +6,7 @@ import HomeView from "../home/HomeView"
 import { useAuthToken } from "../auth/auth";
 
 const GET_SONG_LIST = gql`
-query get_judge_song_list($password: String!,$email: String!) {
+query songListJudages($password: String!,$email: String!) {
   songListJudages(query: {password: $password, email: $email}) {
     SongId
     SongLink
@@ -15,17 +15,10 @@ query get_judge_song_list($password: String!,$email: String!) {
     cate
     email
     group
-    name
     password
-    school
     score
-    score_cate1
-    score_cate2
-    score_cate3
-    score_cate4
-    score_cate5
-    score_cate6
     style1
+    style2
   }
   }`;
 
