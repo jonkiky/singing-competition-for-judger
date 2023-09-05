@@ -192,6 +192,21 @@ const data_cate5 = data.length>0? data.filter(song => song.cate=="5"):[];
                            <p className="text-white">
                           In this page, you will see sections,each section contains multi-songs for rating.
                           </p>
+                          <p className="text-white"><strong>Instructions</strong></p>
+                          <p className="text-white">
+                         
+                          评委打分标准，<br/>
+                          独唱：音准(20%)、音色(20%)、歌曲处理(20%)、节奏(20%)、咬字(20%)；<br/>
+                          合唱：音准(15%)、音色(15%)、歌曲处理(15%)、节奏(15%)、咬字(15%)、默契(25 %)<br/>
+                          评委需要在评分栏上打入总评分(0-100)<br/>
+                          </p>
+                          <p className="text-white">
+                           决赛：视每项每组参赛曲目多寡，决定进入决赛曲目数：从前2到前6不等。<br/>
+                          決賽評分：
+                          <br/>
+                          （1）专业评委评分(去掉一个最高和最低分的平均）权重90%；
+                          （2）决赛现场观众投票权重 10%，票数第一得100分，其他票数得分=票数/第一票数X100。 
+                          </p>
                           <p className="text-white">
                           You can submit your ratings by clicking the submit button.
                           Thank you !
